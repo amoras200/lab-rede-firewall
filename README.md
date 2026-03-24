@@ -98,8 +98,14 @@ a rede é iniciada.
 
 ### 6. Adicionar segunda interface
 
-![Abrindo config](images/abrindo-config.png)
+![Abrindo config](/images/interface.png)
 ![Detalhes de hardware](images/hardware-detalhes.png)
+
+O virsh é a interface de texto para o Libvirt, que é o padrão no Linux para lidar com virtualização (KVM/QEMU).
+
+Nessa ordem os comandos fazem: Iniciar as maquinas novamente, Conectando a rede (Como um "cabo de rede" virtual).
+"Domain 'VM1-Seguranca' started" e "interface attachhed successfully" demonstram que deu certo! O mesmo vale para a VM2, cujo processo foi repetido.
+
 ![Adicionando interface](images/adicionando-interface.png)
 
 ---
@@ -115,6 +121,8 @@ a rede é iniciada.
 ```bash id="netplan-edit"
 sudo nano /etc/netplan/00-installer-config.yaml
 ```
+
+Esse arquivo é o Netplan, a ferramenta padrão do Ubuntu e de outras distros Linux para configurar a rede. Aqui estou "atribuindo nomes e endereços" para as placas que acabamos de criar.
 
 #### VM1
 
@@ -144,7 +152,7 @@ network:
         - 192.168.100.20/24
 ```
 
-Aplicar:
+Aplicar (só salvar não funciona, esse comando faz com que as redes ativem):
 
 ```bash id="apply"
 sudo netplan apply
@@ -216,4 +224,3 @@ nmap 192.168.100.0/24
 * Netplan
 * iptables
 * nmap
-* Documentação com evidências
